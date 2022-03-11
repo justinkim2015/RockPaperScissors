@@ -53,11 +53,13 @@ function playRound(playerSelection, computerSelection) {
 //call the playRound function inside the function*
 //use prompt() to get input from the user*
 //console.log() the results of the match*
-//find a way to repeat this until there are 5 rounds while keeping score 
+//find a way to repeat this until there are 5 rounds* while keeping score 
 //break down the above step more^^
 
 function game() {
+    for (let i=0; i < 5; i++) {
     playerSelection = prompt('Rock, paper, scissors?');
     computerSelection = computerPlay();
     console.log(playRound(playerSelection, computerSelection));
+    }
 }
