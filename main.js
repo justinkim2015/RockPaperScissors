@@ -20,27 +20,30 @@ function computerPlay() {
 //create a way to have playerselection input into the game
 //make the computer selection parameter call the computerPlay function
 //write conditonal statements within the function to follow logic of RPS
-//make playerSelection case insensitive
+//make playerSelection case insensitive NEED TO DO THIS STILL
 //determine the winner of the match
 //return a string declaring the winner.
 
+
 function RPS(playerSelection, computerSelection) {
      computerSelection = computerPlay();
-     if (playerSelection == 'rock' && computerSelection == 'paper') {
+     let player = (playerSelection.toLowerCase());
+     console.log(player)
+     if (player == 'rock' && computerSelection == 'paper') {
          return 'You lose! Paper beats rock!';
-     } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-         return 'You win!Rock beats Paper!';
-     } else if (playerSelection == 'rock' && computerSelection == 'rock') {
+     } else if (player == 'rock' && computerSelection == 'scissors') {
+         return 'You win! Rock beats Paper!';
+     } else if (player == 'rock' && computerSelection == 'rock') {
          return 'It\'s a tie! You both played rock!';
-     } else if (playerSelection == 'paper' && computerSelection == 'paper') {
+     } else if (player == 'paper' && computerSelection == 'paper') {
          return 'It\'s a tie! You both played paper!';
-     } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+     } else if (player == 'paper' && computerSelection == 'scissors') {
          return 'You lose! Scissors beats paper!';
-     } else if (playerSelection == 'paper' && computerSelection == 'rock') {
+     } else if (player == 'paper' && computerSelection == 'rock') {
          return 'You win! Paper beats rock!';
-     } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+     } else if (player == 'scissors' && computerSelection == 'paper') {
          return 'You win! Scissors beats paper!';
-     } else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
+     } else if (player == 'scissors' && computerSelection == 'scissors') {
          return 'It\'s a tie! You both played scissors!';
      } else {
          return 'You lose! Rock beats scissors!';
