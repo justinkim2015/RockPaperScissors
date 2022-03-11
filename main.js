@@ -20,15 +20,14 @@ function computerPlay() {
 //create a way to have playerselection input into the game
 //make the computer selection parameter call the computerPlay function
 //write conditonal statements within the function to follow logic of RPS
-//make playerSelection case insensitive NEED TO DO THIS STILL
+//make playerSelection case insensitive 
 //determine the winner of the match
 //return a string declaring the winner.
 
 
-function RPS(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
      computerSelection = computerPlay();
      let player = (playerSelection.toLowerCase());
-     console.log(player)
      if (player == 'rock' && computerSelection == 'paper') {
          return 'You lose! Paper beats rock!';
      } else if (player == 'rock' && computerSelection == 'scissors') {
@@ -50,3 +49,15 @@ function RPS(playerSelection, computerSelection) {
     }
 }
 
+//declare a function*
+//call the playRound function inside the function*
+//use prompt() to get input from the user*
+//console.log() the results of the match*
+//find a way to repeat this until there are 5 rounds while keeping score 
+//break down the above step more^^
+
+function game() {
+    playerSelection = prompt('Rock, paper, scissors?');
+    computerSelection = computerPlay();
+    console.log(playRound(playerSelection, computerSelection));
+}
