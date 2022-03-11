@@ -53,13 +53,40 @@ function playRound(playerSelection, computerSelection) {
 //call the playRound function inside the function*
 //use prompt() to get input from the user*
 //console.log() the results of the match*
-//find a way to repeat this until there are 5 rounds* while keeping score 
-//break down the above step more^^
+//find a way to repeat this until there are 5 rounds* 
+//find a way to increment numbers*
+//find a way to keep score
+//return score at end and declare winner
+//myscore += 1; //THIS IS HOW I WILL INCREMENT THE NUMBERS 
+//compscore += 1;
+//console.log(playRound(playerSelection, computerSelection));
+// console.log(myscore, compscore);
 
 function game() {
+
+    let myscore = 0;
+    let compscore= 0;    
+
     for (let i=0; i < 5; i++) {
-    playerSelection = prompt('Rock, paper, scissors?');
-    computerSelection = computerPlay();
-    console.log(playRound(playerSelection, computerSelection));
-    }
+      playerSelection = prompt('Rock, paper, scissors?');
+      computerSelection = computerPlay();
+      console.log(playRound(playerSelection, computerSelection))
+      if (playRound(playerSelection, computerSelection) === 
+         'You lose! Paper beats rock!' || 
+         'You lose! Scissors beats paper!' || 
+         'You lose! Rock beats scissors!') {
+          //compscore += 1;
+      } else if (playRound(playerSelection, computerSelection) ===  
+         'You win! Rock beats Paper!' || 
+         'You win! Paper beats rock!' || 
+         'You win! Scissors beats paper!') {
+          myscore += 1;
+      } else {
+      }
+      console.log(myscore,compscore)
+      }
 }
+
+//Problem is compscore is incrementing by 1 no matter what.
+//comp score works but increments every round, if i comment it out, myscore =+ 1 doesnt  run.
+//perhaps its not reading my else if, or else, statement, time to check my syntax
