@@ -29,23 +29,23 @@ function playRound(playerSelection, computerSelection) {
      computerSelection = computerPlay();
      let player = (playerSelection.toLowerCase());
      if (player == 'rock' && computerSelection == 'paper') {
-         return 'You lose! Paper beats rock!';
+         return 'You lose!';
      } else if (player == 'rock' && computerSelection == 'scissors') {
-         return 'You win! Rock beats Paper!';
+         return 'You win!';
      } else if (player == 'rock' && computerSelection == 'rock') {
          return 'It\'s a tie! You both played rock!';
      } else if (player == 'paper' && computerSelection == 'paper') {
          return 'It\'s a tie! You both played paper!';
      } else if (player == 'paper' && computerSelection == 'scissors') {
-         return 'You lose! Scissors beats paper!';
+         return 'You lose!';
      } else if (player == 'paper' && computerSelection == 'rock') {
-         return 'You win! Paper beats rock!';
+         return 'You win!';
      } else if (player == 'scissors' && computerSelection == 'paper') {
-         return 'You win! Scissors beats paper!';
+         return 'You win!';
      } else if (player == 'scissors' && computerSelection == 'scissors') {
          return 'It\'s a tie! You both played scissors!';
      } else {
-         return 'You lose! Rock beats scissors!';
+         return 'You lose!';
     }
 }
 
@@ -57,8 +57,8 @@ function playRound(playerSelection, computerSelection) {
 //find a way to increment numbers*
 //find a way to keep score
 //return score at end and declare winner
-//myscore += 1; //THIS IS HOW I WILL INCREMENT THE NUMBERS 
-//compscore += 1;
+//myscore ++
+//compscore ++;
 //console.log(playRound(playerSelection, computerSelection));
 // console.log(myscore, compscore);
 
@@ -68,29 +68,32 @@ function game() {
     let compscore = 0;    
     let tie = 0
 
-    for (let i=0; i < 5; i++) {
-      playerSelection = prompt('Rock, paper, scissors?');
-      computerSelection = computerPlay();
-      console.log(playRound(playerSelection, computerSelection))
-
-
-      if (playRound(playerSelection, computerSelection) == 'You lose! Paper beats rock!'  
-         || (playRound(playerSelection, computerSelection) == 'You lose! Scissors beats paper!'  
-         || (playRound(playerSelection, computerSelection) == 'You lose! Rock beats scissors!'))) {
-          compscore += 1;
-      } else if (playRound(playerSelection, computerSelection) ==  'You win! Rock beats Paper!' 
-         || (playRound(playerSelection, computerSelection) == 'You win! Paper beats rock!' 
-         || (playRound(playerSelection, computerSelection) == 'You win! Scissors beats paper!'))) {
-          myscore += 1;
+    for (let i=0; i < 5; i++) { //start a loop
+      playerSelection = prompt('Rock, paper, scissors?'); //prompt the player and get playerSelection value
+      computerSelection = computerPlay(); //call the function computerPlay to get computerSelection value
+      if (playRound(playerSelection,computerSelection) == 'You win!') {
+          myscore++;
+          console.log('You win!')  
+      } else if (playRound(playerSelection, computerSelection) == 'You lose!') {
+          compscore++;
+          console.log('You lose');
       } else {
+          console.log('It\'s a tie!');
+      }
+      console.log(myscore, compscore)
       }
 
-      console.log(myscore, compscore)
+      if (myscore > compscore) {
+          return `You win! ${myscore} to ${compscore}`; 
+      } else if (compscore > myscore) {
+          return `You lose! ${myscore} to ${compscore}`;
+      } else {
+          return `It's a tie!  ${myscore} to ${compscore}`;
       }
 }
 
-//MY CONDITIONALS ARE MISTAKEN*************
-//*******OR SYNTAX ERROR SOMEWHERE IN CONDITIONALS
-//Problem is compscore is incrementing by 1 no matter what.
-//comp score works but increments every round, if i comment it out, myscore =+ 1 doesnt  run.
-//perhaps its not reading my else if, or else, statement, time to check my syntax
+//The big problem I had with this was WHEN i was console.log() -ing playRound().  
+//I was actually calling the function two times with different results, therefore the scoring 
+//was behaving unpredictably.  
+
+//I fixed this by simplifying the code and not pulling the returned value from the function but just a string I wrote.
