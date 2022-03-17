@@ -15,23 +15,23 @@ function playRound(playerSelection, computerSelection) {
      computerSelection = computerPlay();
      let player = (playerSelection.toLowerCase());
      if (player == 'rock' && computerSelection == 'paper') {
-         return 'You lose!';
+         console.log('You lose!');
      } else if (player == 'rock' && computerSelection == 'scissors') {
-         return 'You win!';
+         console.log('You win!');
      } else if (player == 'rock' && computerSelection == 'rock') {
-         return 'It\'s a tie! You both played rock!';
+         console.log('It\'s a tie! You both played rock!');
      } else if (player == 'paper' && computerSelection == 'paper') {
-         return 'It\'s a tie! You both played paper!';
+         console.log('It\'s a tie! You both played paper!');
      } else if (player == 'paper' && computerSelection == 'scissors') {
-         return 'You lose!';
+         console.log('You lose!');
      } else if (player == 'paper' && computerSelection == 'rock') {
-         return 'You win!';
+         console.log('You win!');
      } else if (player == 'scissors' && computerSelection == 'paper') {
-         return 'You win!';
+         console.log('You win!');
      } else if (player == 'scissors' && computerSelection == 'scissors') {
-         return 'It\'s a tie! You both played scissors!';
+         console.log('It\'s a tie! You both played scissors!');
      } else {
-         return 'You lose!';
+         console.log('You lose!');
     }
 }
 
@@ -66,13 +66,15 @@ function playRound(playerSelection, computerSelection) {
 //       }
 // }
 
-const button = document.querySelector('#rock')
+//using an anon function to use variables in eventlistener
+const rock = document.querySelector('#rock')
+rock.addEventListener('click', () => {playRound('rock',computerPlay)}) //working atm
 
-button.addEventListener('click', playRound) 
+const paper = document.querySelector('#paper')
+paper.addEventListener('click', () => {playRound('paper',computerPlay)})
 
-
-
-
+const scissors = document.querySelector('#scissors')
+scissors.addEventListener('click', () => {playRound('scissors',computerPlay)})
 
 
 
