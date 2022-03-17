@@ -1,5 +1,8 @@
 window.onload = function () { //WHY DOES THIS WORK STUDYSTUDY
-
+ 
+let playerscore = 0;
+let compscore = 0;
+        
 function computerPlay() {
     let random = Math.floor(Math.random()*3);
     if (random == 0) {
@@ -15,26 +18,80 @@ function playRound(playerSelection, computerSelection) {
      computerSelection = computerPlay();
      let player = (playerSelection.toLowerCase());
      if (player == 'rock' && computerSelection == 'paper') {
-         console.log('You lose!');
+         winRound();
      } else if (player == 'rock' && computerSelection == 'scissors') {
-         console.log('You win!');
+        loseRound();
      } else if (player == 'rock' && computerSelection == 'rock') {
-         console.log('It\'s a tie! You both played rock!');
+        tieRound();
      } else if (player == 'paper' && computerSelection == 'paper') {
-         console.log('It\'s a tie! You both played paper!');
+        tieRound();
      } else if (player == 'paper' && computerSelection == 'scissors') {
-         console.log('You lose!');
+        loseRound();
      } else if (player == 'paper' && computerSelection == 'rock') {
-         console.log('You win!');
+         winRound();
      } else if (player == 'scissors' && computerSelection == 'paper') {
-         console.log('You win!');
+         winRound();
      } else if (player == 'scissors' && computerSelection == 'scissors') {
-         console.log('It\'s a tie! You both played scissors!');
+        tieRound();
      } else {
-         console.log('You lose!');
+        loseRound();
+     }
+     totalScore();
+
+}
+
+//this code selects all <p> elements in the div results
+function deleteMsg() {
+    const p = document.querySelectorAll('.winOrLose')
+    console.log(p)
+}
+
+
+function totalScore () {
+    if (playerscore == 5) {
+        console.log(`You win! ${playerscore} - ${compscore}`);
+    } else if (compscore == 5) {
+        console.log(`You lose! ${playerscore} - ${compscore}`);
+    } else;
+}
+
+function loseRound() {
+    if ((compscore < 5) && (playerscore !== 5)) {
+      compscore++; 
+      const lose = document.createElement('p');
+      lose.classList.add('winOrLose');
+      lose.textContent = 'You lose!';
+      results.appendChild(lose);
+      const score = document.createElement('p');
+      score.textContent = `${playerscore} - ${compscore}`;
+      results.appendChild(score);
     }
 }
 
+function winRound() {
+    if ((playerscore < 5) && (compscore !== 5)) {
+      playerscore++; 
+      const win = document.createElement('p');
+      win.classList.add('winOrLose');
+      win.textContent = 'You win!';
+      results.appendChild(win);
+      const score = document.createElement('p');
+      score.textContent = `${playerscore} - ${compscore}`;
+      results.appendChild(score);
+    }
+}
+
+function tieRound() {
+    if (((playerscore < 5) && (compscore !== 5)) || ((compscore < 5) && (playerscore !== 5))) {
+      const tie = document.createElement('p');
+      tie.classList.add('winOrLose');
+      tie.textContent = 'It\'s a tie!';
+      results.appendChild(tie);
+      const score = document.createElement('p');
+      score.textContent = `${playerscore} - ${compscore}`;
+      results.appendChild(score);
+    }
+}
 
 // function game() {
 
@@ -66,17 +123,55 @@ function playRound(playerSelection, computerSelection) {
 //       }
 // }
 
+//This is code for eventlisteners on buttons
 //using an anon function to use variables in eventlistener
 const rock = document.querySelector('#rock')
-rock.addEventListener('click', () => {playRound('rock',computerPlay)}) //working atm
+rock.addEventListener('click', () => {playRound('rock',computerPlay)});
 
 const paper = document.querySelector('#paper')
-paper.addEventListener('click', () => {playRound('paper',computerPlay)})
+paper.addEventListener('click', () => {playRound('paper',computerPlay)});
 
 const scissors = document.querySelector('#scissors')
-scissors.addEventListener('click', () => {playRound('scissors',computerPlay)})
+scissors.addEventListener('click', () => {playRound('scissors',computerPlay)});
 
+
+//This is code for adding text via DOM manipulation
+const body = document.querySelector('body')
+
+const div = document.createElement('div');
+div.classList.add('results');
+body.appendChild(div);
+
+const results = document.querySelector('.results');
 
 
 
 }
+
+
+
+
+
+
+
+
+
+//this will keep track of score as long as I can dynamically change the value in 
+//the two variables.
+
+//This will be moved to conditional statements
+
+// const score = document.createElement('p');
+// score.textContent = `${playerscore} - ${compscore}`;
+// results.appendChild(score);
+
+// const win = document.createElement('p');
+// win.textContent = 'You win!';
+// results.appendChild(win);
+
+// const lose = document.createElement('p');
+// lose.textContent = 'You lose!';
+// results.appendChild(lose);
+
+
+
