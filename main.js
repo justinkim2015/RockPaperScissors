@@ -1,5 +1,5 @@
 window.onload = function () { //WHY DOES THIS WORK STUDYSTUDY
- 
+
 let playerscore = 0;
 let compscore = 0;
         
@@ -37,15 +37,35 @@ function playRound(playerSelection, computerSelection) {
         loseRound();
      }
      totalScore();
+     updateScore();
 
 }
+//Trying to figure out how to replace the inputs
+function updateScore() {
+    const text = document.querySelector('.winOrLose');
+    console.log(text)
+    if (text == "You win!" || "It's a tie!" || "You lose!") {
+        console.log('hi');
+        } else {
+          deleteMsg()  
+        };
+}
+
 
 //this code selects all <p> elements in the div results
+//THIS IS CURRENT WORK, trying to figure out how to
+//replace and or delete the message so only 1 is 
+//displayed at a time.
 function deleteMsg() {
-    const p = document.querySelectorAll('.winOrLose')
-    console.log(p)
+    const inside = document.querySelector('.results');
+    inside.remove();
 }
 
+function deleteAll() {
+    const p = document.querySelectorAll('.winOrLose');
+    document.replaceChildren();//replaces everything in node with ()
+    console.log(p)
+    }
 
 function totalScore () {
     if (playerscore == 5) {
@@ -145,11 +165,7 @@ body.appendChild(div);
 const results = document.querySelector('.results');
 
 
-
 }
-
-
-
 
 
 
