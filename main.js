@@ -2,7 +2,26 @@ window.onload = function () { //WHY DOES THIS WORK STUDYSTUDY
 
 let playerscore = 0;
 let compscore = 0;
-        
+
+//This is code for eventlisteners on buttons
+//using an anon function to use variables in eventlistener
+
+const rock = document.querySelector('#rock')
+rock.addEventListener('click', () => {playRound('rock',computerPlay)});
+
+const paper = document.querySelector('#paper')
+paper.addEventListener('click', () => {playRound('paper',computerPlay)});
+
+const scissors = document.querySelector('#scissors')
+scissors.addEventListener('click', () => {playRound('scissors',computerPlay)});
+
+//scoreboard 
+
+const score = document.querySelector('.scoreboard');
+const announcement = document.querySelector('.winOrLose');
+const winner = document.querySelector('.winner');
+
+
 function computerPlay() {
     let random = Math.floor(Math.random()*3);
     if (random == 0) {
@@ -37,82 +56,46 @@ function playRound(playerSelection, computerSelection) {
         loseRound();
      }
      totalScore();
-     updateScore();
 
 }
-//Trying to figure out how to replace the inputs
-function updateScore() {
-    const text = document.querySelector('.winOrLose');
-    console.log(text)
-    if (text == "You win!" || "It's a tie!" || "You lose!") {
-        console.log('hi');
-        } else {
-          deleteMsg()  
-        };
-}
-
-
-//this code selects all <p> elements in the div results
-//THIS IS CURRENT WORK, trying to figure out how to
-//replace and or delete the message so only 1 is 
-//displayed at a time.
-function deleteMsg() {
-    const inside = document.querySelector('.results');
-    inside.remove();
-}
-
-function deleteAll() {
-    const p = document.querySelectorAll('.winOrLose');
-    document.replaceChildren();//replaces everything in node with ()
-    console.log(p)
-    }
 
 function totalScore () {
     if (playerscore == 5) {
-        console.log(`You win! ${playerscore} - ${compscore}`);
+        winner.textContent = `You win the match! Computers are lame!`;
     } else if (compscore == 5) {
-        console.log(`You lose! ${playerscore} - ${compscore}`);
+        winner.textContent = 'You lost the match, computers are better than you!';
     } else;
 }
 
 function loseRound() {
     if ((compscore < 5) && (playerscore !== 5)) {
       compscore++; 
-      const lose = document.createElement('p');
-      lose.classList.add('winOrLose');
-      lose.textContent = 'You lose!';
-      results.appendChild(lose);
-      const score = document.createElement('p');
       score.textContent = `${playerscore} - ${compscore}`;
-      results.appendChild(score);
+      announcement.textContent = 'You lost this round, try again!';
     }
 }
 
 function winRound() {
     if ((playerscore < 5) && (compscore !== 5)) {
       playerscore++; 
-      const win = document.createElement('p');
-      win.classList.add('winOrLose');
-      win.textContent = 'You win!';
-      results.appendChild(win);
-      const score = document.createElement('p');
       score.textContent = `${playerscore} - ${compscore}`;
-      results.appendChild(score);
+      announcement.textContent = 'Congrats!  You got this one!'
     }
 }
 
 function tieRound() {
     if (((playerscore < 5) && (compscore !== 5)) || ((compscore < 5) && (playerscore !== 5))) {
-      const tie = document.createElement('p');
-      tie.classList.add('winOrLose');
-      tie.textContent = 'It\'s a tie!';
-      results.appendChild(tie);
-      const score = document.createElement('p');
       score.textContent = `${playerscore} - ${compscore}`;
-      results.appendChild(score);
+      announcement.textContent = 'It\'s a tie! Once more!';
     }
 }
 
+
+
+}
+
+
+//old loopy guy*************
 // function game() {
 
 //     let myscore = 0;
@@ -142,52 +125,4 @@ function tieRound() {
 //           return `It's a tie!  ${myscore} to ${compscore}`;
 //       }
 // }
-
-//This is code for eventlisteners on buttons
-//using an anon function to use variables in eventlistener
-const rock = document.querySelector('#rock')
-rock.addEventListener('click', () => {playRound('rock',computerPlay)});
-
-const paper = document.querySelector('#paper')
-paper.addEventListener('click', () => {playRound('paper',computerPlay)});
-
-const scissors = document.querySelector('#scissors')
-scissors.addEventListener('click', () => {playRound('scissors',computerPlay)});
-
-
-//This is code for adding text via DOM manipulation
-const body = document.querySelector('body')
-
-const div = document.createElement('div');
-div.classList.add('results');
-body.appendChild(div);
-
-const results = document.querySelector('.results');
-
-
-}
-
-
-
-
-
-
-//this will keep track of score as long as I can dynamically change the value in 
-//the two variables.
-
-//This will be moved to conditional statements
-
-// const score = document.createElement('p');
-// score.textContent = `${playerscore} - ${compscore}`;
-// results.appendChild(score);
-
-// const win = document.createElement('p');
-// win.textContent = 'You win!';
-// results.appendChild(win);
-
-// const lose = document.createElement('p');
-// lose.textContent = 'You lose!';
-// results.appendChild(lose);
-
-
 
