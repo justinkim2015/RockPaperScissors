@@ -1,27 +1,21 @@
-window.onload = function () { //WHY DOES THIS WORK STUDYSTUDY
-
 let playerscore = 0;
 let compscore = 0;
 
-//This is code for eventlisteners on buttons
+//buttons
 //using an anon function to use variables in eventlistener
-
 const rock = document.querySelector('#rock')
 rock.addEventListener('click', () => {playRound('rock',computerPlay)});
-
 const paper = document.querySelector('#paper')
 paper.addEventListener('click', () => {playRound('paper',computerPlay)});
-
 const scissors = document.querySelector('#scissors')
 scissors.addEventListener('click', () => {playRound('scissors',computerPlay)});
 
 //scoreboard 
-
 const score = document.querySelector('.scoreboard');
 const announcement = document.querySelector('.winOrLose');
 const winner = document.querySelector('.winner');
 
-
+//functions
 function computerPlay() {
     let random = Math.floor(Math.random()*3);
     if (random == 0) {
@@ -36,34 +30,25 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
      computerSelection = computerPlay();
      let player = (playerSelection.toLowerCase());
-     if (player == 'rock' && computerSelection == 'paper') {
+     if ((player == 'rock' && computerSelection == 'paper') || 
+     (player == 'paper' && computerSelection == 'rock') || 
+     (player == 'scissors' && computerSelection == 'paper')) {
          winRound();
-     } else if (player == 'rock' && computerSelection == 'scissors') {
-        loseRound();
-     } else if (player == 'rock' && computerSelection == 'rock') {
-        tieRound();
-     } else if (player == 'paper' && computerSelection == 'paper') {
-        tieRound();
-     } else if (player == 'paper' && computerSelection == 'scissors') {
-        loseRound();
-     } else if (player == 'paper' && computerSelection == 'rock') {
-         winRound();
-     } else if (player == 'scissors' && computerSelection == 'paper') {
-         winRound();
-     } else if (player == 'scissors' && computerSelection == 'scissors') {
+     } else if ((player == 'rock' && computerSelection == 'rock') || 
+     (player == 'paper' && computerSelection == 'paper') ||
+     (player == 'scissors' && computerSelection == 'scissors')) {
         tieRound();
      } else {
         loseRound();
      }
      totalScore();
-
 }
 
 function totalScore () {
     if (playerscore == 5) {
-        winner.textContent = `You win the match! Computers are lame!`;
+        announcement.textContent = `You win the match! Computers are lame!`;
     } else if (compscore == 5) {
-        winner.textContent = 'You lost the match, computers are better than you!';
+        announcement.textContent = 'You lost the match, computers are better than you!';
     } else;
 }
 
@@ -88,7 +73,7 @@ function tieRound() {
       score.textContent = `${playerscore} - ${compscore}`;
       announcement.textContent = 'It\'s a tie! Once more!';
     }
-}
+
 
 
 
